@@ -1,4 +1,5 @@
 import 'package:chiikawamarketapp/src/init/page/init_start_page.dart';
+import 'package:chiikawamarketapp/src/splash/page/splash.dart';
 import 'package:flutter/material.dart';
 import 'package:chiikawamarketapp/main.dart';
 
@@ -19,6 +20,6 @@ class _ChiikawaMarketState extends State<ChiikawaMarket> {
   }
   @override
   Widget build(BuildContext context) {
-    return isInitStarted ? const InitStartPage() : const Text('보류');
+    return isInitStarted ? const InitStartPage() : const SplashPage();
   }
 }
