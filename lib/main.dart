@@ -2,7 +2,10 @@ import 'package:chiikawamarketapp/chiikawa_market.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-void main() {
+int count = 0;
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+
   runApp(
     GetMaterialApp(
       title: '치이카와 마켓',
