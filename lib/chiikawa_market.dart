@@ -1,3 +1,4 @@
+import 'package:chiikawamarketapp/src/init/page/init_start_page.dart';
 import 'package:flutter/material.dart';
 import 'package:chiikawamarketapp/main.dart';
 
@@ -9,28 +10,15 @@ class ChiikawaMarket extends StatefulWidget {
 }
 
 class _ChiikawaMarketState extends State<ChiikawaMarket> {
+  late bool isInitStarted;
+
+  @override
+  void initState() {
+    super.initState();
+    isInitStarted = prefs.getBool('isInitStarted') ?? true;
+  }
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        // child: ClipOval(
-        //   child: Image.asset('assets/images/chiikawa.jpg'),
-        // ),
-        child: Text(
-          count.toString(),
-          style: const TextStyle(
-            fontSize: 80,
-            color: Colors.white,
-          ),
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          setState(() {
-            count++;
-          });
-        },
-      ),
-    );
+    return isInitStarted ? const InitStartPage() : const Text('보류');
   }
 }
