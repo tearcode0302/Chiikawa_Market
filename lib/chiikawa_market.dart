@@ -7,7 +7,9 @@ class ChiikawaMarket extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Text('프로젝트 시작'),
+        child: ClipOval(
+          child: Image.asset('assets/images/chiikawa.jpg'),
+        ),
       ),
     );
   }

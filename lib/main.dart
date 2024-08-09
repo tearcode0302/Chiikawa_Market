@@ -7,6 +7,16 @@ void main() {
     GetMaterialApp(
       title: '치이카와 마켓',
       initialRoute: '/',
+      theme: ThemeData(
+        appBarTheme: const AppBarTheme(
+          elevation: 0,
+          color: Color(0xff212123),
+          titleTextStyle: TextStyle(
+            color: Colors.white,
+          ),
+        ),
+        scaffoldBackgroundColor: const Color(0xff212123)
+      ),
       home: ChiikawaMarket(),
       getPages: [
         GetPage(name: '/', page: () => const ChiikawaMarket()),
