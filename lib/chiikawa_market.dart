@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:chiikawamarketapp/main.dart';
 
-class ChiikawaMarket extends StatelessWidget {
+class ChiikawaMarket extends StatefulWidget {
   const ChiikawaMarket({super.key});
 
+  @override
+  State<ChiikawaMarket> createState() => _ChiikawaMarketState();
+}
+
+class _ChiikawaMarketState extends State<ChiikawaMarket> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,8 +26,9 @@ class ChiikawaMarket extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-
-          count++;
+          setState(() {
+            count++;
+          });
         },
       ),
     );
