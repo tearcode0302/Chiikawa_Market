@@ -1,5 +1,10 @@
 import 'package:chiikawamarketapp/chiikawa_market.dart';
 import 'package:chiikawamarketapp/firebase_options.dart';
+import 'package:chiikawamarketapp/src/home/page/home_page.dart';
+import 'package:chiikawamarketapp/src/splash/controller/authentication_controller.dart';
+import 'package:chiikawamarketapp/src/splash/controller/data_load_controller.dart';
+import 'package:chiikawamarketapp/src/splash/controller/splash_controller.dart';
+import 'package:chiikawamarketapp/src/user/login/page/login_page.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -28,9 +33,18 @@ void main() async{
         ),
         scaffoldBackgroundColor: const Color(0xff212123)
       ),
-      home: ChiikawaMarket(),
+      initialBinding: BindingsBuilder(
+          () {
+            Get.put(SplashController());
+            Get.put(DataLoadContrller());
+            Get.put(AuthenticationController());
+          }
+      ),
+      home: const ChiikawaMarket(),
       getPages: [
         GetPage(name: '/', page: () => const ChiikawaMarket()),
+        GetPage(name: '/home', page: () => const HomePage()),
+        GetPage(name: '/login', page: () => const LoginPage()),
       ],
     ),
   );
