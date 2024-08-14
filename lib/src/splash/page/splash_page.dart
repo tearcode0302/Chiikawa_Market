@@ -1,4 +1,5 @@
 import 'package:chiikawamarketapp/src/common/app_font.dart';
+import 'package:chiikawamarketapp/src/common/enum/authentication_status.dart';
 import 'package:chiikawamarketapp/src/splash/controller/authentication_controller.dart';
 import 'package:chiikawamarketapp/src/splash/controller/data_load_controller.dart';
 import 'package:chiikawamarketapp/src/splash/controller/splash_controller.dart';
@@ -15,17 +16,23 @@ class SplashPage extends GetView<SplashController> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: GetxListener<bool>(
-          listen: (bool isLogined) {
-            if (isLogined) {
-              Get.offNamed('/home');
-            } else {
-              Get.offNamed('/login');
+        child: GetxListener<AuthenticationsStatus>(
+          listen: (AuthenticationsStatus status) {
+            switch (status) {
+              case AuthenticationsStatus.authentication:
+                Get.offNamed('/home');
+                break;
+              case AuthenticationsStatus.unAuthenticated:
+                break;
+              case AuthenticationsStatus.unknown:
+                Get.offNamed('/login');
+                break;
+              case AuthenticationsStatus.init:
+                break;
             }
           },
           stream: Get
-              .find<AuthenticationController>()
-              .isLogined,
+              .find<AuthenticationController>().status,
           child: GetxListener<bool>(
             listen: (bool value) {
               if (value) {
@@ -47,7 +54,7 @@ class SplashPage extends GetView<SplashController> {
                     Get.find<DataLoadContrller>().loadData();
                     break;
                   case StepType.authCheck:
-                    Get.find<AuthenticationController>().autoCheck();
+                    Get.find<AuthenticationController>().authCheck();
                     break;
                 }
               },

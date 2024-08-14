@@ -5,6 +5,8 @@ import 'package:chiikawamarketapp/src/splash/controller/authentication_controlle
 import 'package:chiikawamarketapp/src/splash/controller/data_load_controller.dart';
 import 'package:chiikawamarketapp/src/splash/controller/splash_controller.dart';
 import 'package:chiikawamarketapp/src/user/login/page/login_page.dart';
+import 'package:chiikawamarketapp/src/user/repository/authentication_repository.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -35,9 +37,11 @@ void main() async{
       ),
       initialBinding: BindingsBuilder(
           () {
+            var authenticationRepository = AuthenticationRepository(FirebaseAuth.instance);
+            Get.put(authenticationRepository);
             Get.put(SplashController());
             Get.put(DataLoadContrller());
-            Get.put(AuthenticationController());
+            Get.put(AuthenticationController(authenticationRepository));
           }
       ),
       home: const ChiikawaMarket(),
